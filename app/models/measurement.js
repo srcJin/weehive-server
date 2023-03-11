@@ -8,16 +8,16 @@ module.exports = (mongoose) => {
       date: { type: Date, default: Date.now },
       measurements:  // array of objects
       {
-        time: "00:30",
+        time: Date,
         value: {
-          timestamp: ISODate("2019-01-31T10:00:00.000Z"),
-          temperature_1: 40,
-          temperature_2: 40,
-          humidity: 50,
-          lighting: 50,
-          in: 100,
-          out: 100,
-          sound: 100,
+          timestamp: Date,
+          temperature_1: Number,
+          temperature_2: Number,
+          humidity: Number,
+          lighting: Number,
+          in: Number,
+          out: Number,
+          sound: Number,
         }
       }
       },
