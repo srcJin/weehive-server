@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Methods\tUrls\tActions\r GET\tapi/tutorials\tget all Tutorials\r GET\tapi/tutorials/:id\tget Tutorial by id\r POST\tapi/tutorials\tadd new Tutorial\r PUT\tapi/tutorials/:id\tupdate Tutorial by id\r DELETE\tapi/tutorials/:id\tremove Tutorial by id\r DELETE\tapi/tutorials\tremove all Tutorials\r GET\tapi/tutorials?title=[kw]\tfind all Tutorials which title contains 'kw'",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.1"
+  }
+}
