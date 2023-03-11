@@ -11,6 +11,10 @@ find all Tutorials by title: find({ title: { $regex: new RegExp(title), $options
 
 const db = require("../models");
 const Tutorial = db.tutorials;
+const user = db.user;
+const hive = db.hive;
+const frame = db.frame;
+const measurement = db.measurement;
 
 
 // Create and Save a new Tutorial

@@ -1,0 +1,28 @@
+//This Mongoose Model represents tutorials collection in MongoDB database.
+// These fields will be generated automatically for each Tutorial document:
+//  _id, title, description, published, createdAt, updatedAt, __v.
+
+
+module.exports = (mongoose) => {
+
+  let schema = mongoose.Schema(
+    {
+      frameId: Number,
+      icon: {type: String, default: 'defaultFrameIcon.jpg'},
+      type: Number, // 1: 
+      floor: Number,
+      index: Number, 
+      dateInspection: Array, // array of date
+      dateHarvest: Array,
+      location: Array,
+      queenName: String,
+      queenId: Number,
+      hiveId: Number,
+      inspectionPic: Array // array of pictures
+    },
+    { timestamps: true }
+  );
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+  const model = mongoose.model("hive", schema);
+  return model;
+};

@@ -30,6 +30,6 @@ module.exports = (mongoose) => {
     return object;
   });
 
-  const Tutorial = mongoose.model("tutorial", schema);
-  return Tutorial;
+  const model = mongoose.model("tutorial", schema);
+  return model;
 };
