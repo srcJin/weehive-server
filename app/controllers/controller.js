@@ -14,8 +14,6 @@ find all Tutorials by title: find({ title: { $regex: new RegExp(title), $options
 const db = require("../models");
 const Tutorial = db.tutorials;
 
-
-
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
   // Validate request
@@ -81,14 +79,18 @@ exports.findOne = (req, res) => {
 
 // Update a Tutorial by the id in the request
 exports.update = (req, res) => {
+  // console.log("exports.update  req=", req)
+  // console.log("exports.update  res=", res)
+
+
     if (!req.body) {
         return res.status(400).send({
           message: "Data to update can not be empty!"
         });
       }
-    
+      // console.log(" req.body.id=", req.body.id)
       const id = req.params.id;
-    
+
       Tutorial.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then(data => {
           if (!data) {
@@ -103,6 +105,7 @@ exports.update = (req, res) => {
           });
         });
 };
+
 
 // Delete a Tutorial with the specified id in the request
 exports.delete = (req, res) => {
@@ -144,7 +147,7 @@ exports.deleteAll = (req, res) => {
 };
 
 // Find all published Tutorials
-exports.findAllPublished = (req, res) => {
+exports.findAllPublished = (req, res) => { 
     Tutorial.find({ published: true })
     .then(data => {
       res.send(data);

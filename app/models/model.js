@@ -26,7 +26,10 @@ module.exports = (mongoose) => {
   // a function to map _id to id for frontend use
   schema.method("toJSON", function () {
     const { __v, _id, ...object } = this.toObject();
-    object.id = _id;
+    // use both _id and id
+    object._id = _id;
+    object.userId = _id;
+
     return object;
   });
 

@@ -21,6 +21,8 @@ module.exports = app => {
     // Delete all Tutorials
     router.delete("/", user.deleteAll);
   
+    // @todo customized routes
+
     app.use('/api/user', router);
 
 };
