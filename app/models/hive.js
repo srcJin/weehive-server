@@ -11,7 +11,7 @@ module.exports = (mongoose) => {
       hiveName: String,
       icon: {type: String, default: 'defaultHiveIcon.jpg'},
       userId: Number,
-      dateInspection: Array, // array of date
+      inspection: Array, // array of date
       location: Array,
       queenName: String,
       queenId: Number,

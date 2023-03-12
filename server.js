@@ -56,8 +56,12 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to WeeHive Server." });
 });
 
-// include routes from controller/controller.js
+// Mount routes
 require("./app/routes/routes")(app);
+require("./app/routes/user")(app);
+require("./app/routes/hive")(app);
+require("./app/routes/frame")(app);
+require("./app/routes/measurement")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3333;

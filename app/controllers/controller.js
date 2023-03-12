@@ -1,3 +1,5 @@
+// 控制器：从模型中获取请求的数据，创建一个 HTML 页面显示出数据，
+// 并将页面返回给用户，以便在浏览器中查看。
 /*
 Mongoose Model functions
 create a new Tutorial: object.save()
@@ -11,10 +13,7 @@ find all Tutorials by title: find({ title: { $regex: new RegExp(title), $options
 
 const db = require("../models");
 const Tutorial = db.tutorials;
-const user = db.user;
-const hive = db.hive;
-const frame = db.frame;
-const measurement = db.measurement;
+
 
 
 // Create and Save a new Tutorial

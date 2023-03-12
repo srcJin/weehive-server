@@ -8,17 +8,15 @@ module.exports = (mongoose) => {
   let schema = mongoose.Schema(
     {
       frameId: Number,
-      icon: {type: String, default: 'defaultFrameIcon.jpg'},
       type: Number, // 1: 
       floor: Number,
       index: Number, 
-      dateInspection: Array, // array of date
-      dateHarvest: Array,
+      inspectionDates: Array, // array of date
+      harvest: Array,
       location: Array,
-      queenName: String,
-      queenId: Number,
+      icon: {type: String, default: 'defaultFrameIcon.jpg'},
+      pictures: Array, // array of pictures
       hiveId: Number,
-      inspectionPic: Array // array of pictures
     },
     { timestamps: true }
   );
