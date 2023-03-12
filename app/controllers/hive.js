@@ -18,22 +18,22 @@ const Hive = db.hive;
 // Create and Save a new Hive
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.hiveId) {
-    res.status(400).send({ message: "no hiveID" });
+  if (!req.body.hiveName) {
+    res.status(400).send({ message: "no hiveName" });
     return;
   }
 
   // Create a Hive
   const hive = new Hive({
-    hiveId: req.body.hiveId,
-    hiveName: req.body.hivename,
+    hiveName: req.body.hiveName,
     icon: req.body.icon,
     userId: req.body.userId,
     inspectionDates: req.body.inspectionDates, // array of date
     location: req.body.location,
+    health: req.body.health,
     queenName: req.body.queenName,
     queenId: req.body.queenId,
-    frames: req.body.frames // array of framd ids
+    frames: req.body.frames, // array of framd ids
   });
 
   // Save Hive in the database
@@ -52,8 +52,8 @@ exports.create = (req, res) => {
 
 // Retrieve all hives from the database.
 exports.findAll = (req, res) => {
-    const hivename = req.query.hivename;
-  var condition = hivename ? { hivename: { $regex: new RegExp(hivename), $options: "i" } } : {};
+    const hivename = req.query.hiveName;
+  var condition = hivename ? { hiveName: { $regex: new RegExp(hivename), $options: "i" } } : {};
 
   Hive.find(condition)
     .then(data => {
@@ -148,3 +148,16 @@ exports.deleteAll = (req, res) => {
     });
 };
 
+// Find all
+exports.findAllType = (req, res) => {
+  Hive.find({ health: 100 })
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while retrieving Hive data."
+    });
+  });
+};

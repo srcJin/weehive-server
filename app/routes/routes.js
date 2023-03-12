@@ -30,6 +30,8 @@ module.exports = app => {
     // Delete all Tutorials
     router.delete("/", tutorials.deleteAll);
   
+    // @todo customized routes
+
     app.use('/api/tutorials', router);
     
   };
