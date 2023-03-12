@@ -21,6 +21,8 @@ module.exports = app => {
     // Delete all Tutorials
     router.delete("/", measurement.deleteAll);
   
+    // @todo customized routes
+
     app.use('/api/measurement', router);
 
 };
