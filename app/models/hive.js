@@ -16,7 +16,8 @@ module.exports = (mongoose) => {
       health: String,
       queenName: String,
       queenId: Number,
-      frames: Array // array of framd ids
+      frames: Array, // array of framd ids
+      measurementsIds: Array //
     },
     { timestamps: true }
   );

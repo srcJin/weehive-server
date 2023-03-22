@@ -9,11 +9,11 @@ module.exports = (mongoose) => {
     {
       userId: Number,
       username: String,
-      password: String,
+      password: String, // @todo password authentification
       adminType: Number,  //1:user、 2:collaborator
       aboutMe: String,
       icon: String,
-      hiveId: Number
+      hiveId: Array
     },
     { timestamps: true }
   );
