@@ -6,7 +6,6 @@ mongoose.Promise = global.Promise;
 const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
-db.tutorials = require("./Model.js")(mongoose);
 db.user = require("./User.js")(mongoose);
 db.hive = require("./Hive.js")(mongoose);
 db.frame = require("./Frame.js")(mongoose);
