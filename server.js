@@ -19,9 +19,10 @@ const app = express();
 // The 'Access-Control-Allow-Origin' header has a value 
 // 'http://localhost:8081' that is not equal to the supplied origin.
 // @note here is to ifx corsOptions
-// let corsOptions = {
-//   origin: 'https://weehive.netlify.app'
-// };
+// ref: https://stackabuse.com/handling-cors-with-node-js/
+let corsOptions = {
+  origin: false
+};
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
