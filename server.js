@@ -21,7 +21,7 @@ const app = express();
 // @note here is to ifx corsOptions
 // ref: https://stackabuse.com/handling-cors-with-node-js/
 let corsOptions = {
-  origin: "https://weehive.netlify.app/"
+  origin: "https://weehive.netlify.app"
 };
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
