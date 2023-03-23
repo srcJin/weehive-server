@@ -18,8 +18,9 @@ const app = express();
 // has been blocked by CORS policy: 
 // The 'Access-Control-Allow-Origin' header has a value 
 // 'http://localhost:8081' that is not equal to the supplied origin.
+// @note here is to ifx corsOptions
 let corsOptions = {
-  origin: "http://weehive.netlify.app"  
+  origin: false 
 };
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
