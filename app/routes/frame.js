@@ -1,24 +1,24 @@
 module.exports = app => {
     const frame = require("../controllers/frame.js");
   
-    var router = require("express").Router();
+    let router = require("express").Router();
       // -------------------------------------------------------------
     // Create a new frame
     router.post("/", frame.create);
   
-    // Retrieve all Tutorials
+    // Retrieve all frame
     router.get("/", frame.findAll);
   
-    // Retrieve a single Tutorial with id
+    // Retrieve a single frame with id
     router.get("/:id", frame.findOne);
   
-    // Update a Tutorial with id
+    // Update a frame with id
     router.put("/:id", frame.update);
   
-    // Delete a Tutorial with id
+    // Delete a frame with id
     router.delete("/:id", frame.delete);
   
-    // Delete all Tutorials
+    // Delete all frames
     router.delete("/", frame.deleteAll);
   
     // @todo customized routes

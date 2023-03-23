@@ -58,7 +58,7 @@ exports.create = (req, res) => {
 // Retrieve all measurements from the database.
 exports.findAll = (req, res) => {
   const measurementname = req.query.measurementname;
-  var condition = measurementname
+  let condition = measurementname
     ? {
         measurementname: { $regex: new RegExp(measurementname), $options: "i" },
       }

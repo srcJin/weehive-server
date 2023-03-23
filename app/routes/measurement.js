@@ -1,24 +1,24 @@
 module.exports = app => {
     const measurement = require("../controllers/measurement.js");
   
-    var router = require("express").Router();
+    let router = require("express").Router();
       // -------------------------------------------------------------
     // Create a new measurement
     router.post("/", measurement.create);
   
-    // Retrieve all Tutorials
+    // Retrieve all measurement
     router.get("/", measurement.findAll);
   
-    // Retrieve a single Tutorial with id
+    // Retrieve a single measurement with id
     router.get("/:id", measurement.findOne);
   
-    // Update a Tutorial with id
+    // Update a measurement with id
     router.put("/:id", measurement.update);
   
-    // Delete a Tutorial with id
+    // Delete a measurement with id
     router.delete("/:id", measurement.delete);
   
-    // Delete all Tutorials
+    // Delete all measurement
     router.delete("/", measurement.deleteAll);
   
     // @todo customized routes

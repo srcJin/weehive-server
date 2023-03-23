@@ -7,17 +7,18 @@ module.exports = (mongoose) => {
 
   let schema = mongoose.Schema(
     {
-      hiveId: Number,
+      hiveId: String,
       hiveName: String,
       icon: {type: String, default: 'defaultHiveIcon.jpg'},
-      userId: Number,
+      userId: String,
       inspection: Array, // array of date
       location: Array,
       health: String,
       queenName: String,
       queenId: Number,
       frames: Array, // array of framd ids
-      measurementsIds: Array //
+      measurementsIds: Array, //
+      comment: String
     },
     { timestamps: true }
   );

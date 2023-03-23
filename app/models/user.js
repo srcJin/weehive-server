@@ -7,12 +7,13 @@ module.exports = (mongoose) => {
 
   let schema = mongoose.Schema(
     {
-      userId: Number,
-      username: String,
+      userId: String,
+      userName: String,
       password: String, // @todo password authentification
+      email: String,
       adminType: Number,  //1:user、 2:collaborator
-      aboutMe: String,
       icon: String,
+      aboutMe: String,
       hiveId: Array
     },
     { timestamps: true }

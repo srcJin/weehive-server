@@ -14,40 +14,33 @@ find all User by title: find({ title: { $regex: new RegExp(title), $options: “
 const db = require("../models");
 const User = db.user;
 
-
 // Create and Save a new User
 exports.create = (req, res) => {
+  console.log('controllers/users.js create(req, res) req=', req)
   // Validate request
-  if (!req.body.userId) {
-    res.status(400).send({ message: "no userID" });
+  if (!req.body.userName) {
+    res.status(400).send({ message: "no userName" });
+    console.log('controller/user.js  res.status(400).send({ message: "no userName" })');
     return;
   }
 
   // Create a User
   const user = new User({
     userId: req.body.userId,
-    username: req.body.username,
+    userName: req.body.userName,
     password: req.body.password,
+    email: req.body.email,
     adminType: req.body.adminType,  //1:user、 2:collaborator
+    icon: req.body.icon,
     aboutMe: req.body.aboutMe,
-    icon: req.body.adminType,
-    hiveId: req.body.hiveId
   });
-
-  // const user = new User({
-  //   userId: 123,
-  //   username: "myUsername",
-  //   password: "123456",
-  //   adminType: 1,  //1:user、 2:collaborator
-  //   icon: "icon",
-  //   hiveId: 12345
-  // });
-
+  console.log("user=",user)
   // Save User in the database
   user
     .save(user)
     .then(data => {
       res.send(data);
+      console.log('controller/user.js create res.send(data) data= ',data)
     })
     .catch(err => {
       res.status(500).send({
@@ -59,8 +52,9 @@ exports.create = (req, res) => {
 
 // Retrieve all users from the database.
 exports.findAll = (req, res) => {
-    const username = req.query.username;
-  var condition = username ? { username: { $regex: new RegExp(username), $options: "i" } } : {};
+    const userName = req.query.userName;
+  // test if the username match the requirement
+  let condition = userName ? { userName: { $regex: new RegExp(userName), $options: "i" } } : {};
 
   User.find(condition)
     .then(data => {
@@ -76,7 +70,7 @@ exports.findAll = (req, res) => {
 
 // Find a single user with an id
 exports.findOne = (req, res) => {
-    const id = req.params.userId;
+    const id = req.params.id;
 
   User.findById(id)
     .then(data => {
@@ -99,7 +93,7 @@ exports.update = (req, res) => {
         });
       }
     
-      const id = req.params.userId;
+      const id = req.params.id;
     
       User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then(data => {
@@ -118,7 +112,7 @@ exports.update = (req, res) => {
 
 // Delete a User with the specified id in the request
 exports.delete = (req, res) => {
-    const id = req.params.userId;
+    const id = req.params.id;
 
   User.findByIdAndRemove(id)
     .then(data => {
@@ -164,7 +158,7 @@ exports.findAllType = (req, res) => {
   .catch(err => {
     res.status(500).send({
       message:
-        err.message || "Some error occurred while retrieving Hive data."
+        err.message || "Some error occurred while retrieving user data."
     });
   });
 };

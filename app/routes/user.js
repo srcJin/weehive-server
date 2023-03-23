@@ -1,24 +1,24 @@
 module.exports = app => {
     const user = require("../controllers/user.js");
   
-    var router = require("express").Router();
-      // -------------------------------------------------------------
+    let router = require("express").Router();
+    // @note user CRUD
     // Create a new User
     router.post("/", user.create);
   
-    // Retrieve all Tutorials
+    // Retrieve all user
     router.get("/", user.findAll);
   
-    // Retrieve a single Tutorial with id
+    // Retrieve a single user with id
     router.get("/:id", user.findOne);
   
-    // Update a Tutorial with id
+    // Update a user with id
     router.put("/:id", user.update);
   
-    // Delete a Tutorial with id
+    // Delete a user with id
     router.delete("/:id", user.delete);
   
-    // Delete all Tutorials
+    // Delete all user
     router.delete("/", user.deleteAll);
   
     // @todo customized routes

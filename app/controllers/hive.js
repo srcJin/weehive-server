@@ -18,6 +18,7 @@ const Hive = db.hive;
 // Create and Save a new Hive
 exports.create = (req, res) => {
   // Validate request
+  console.log('controller/hive.js create(req, res) req=',req)
   if (!req.body.hiveName) {
     res.status(400).send({ message: "no hiveName" });
     return;
@@ -41,6 +42,7 @@ exports.create = (req, res) => {
     .save(hive)
     .then(data => {
       res.send(data);
+      console.log('controller/hive.js create res.send(data) data= ',data)
     })
     .catch(err => {
       res.status(500).send({
@@ -52,8 +54,8 @@ exports.create = (req, res) => {
 
 // Retrieve all hives from the database.
 exports.findAll = (req, res) => {
-    const hivename = req.query.hiveName;
-  var condition = hivename ? { hiveName: { $regex: new RegExp(hivename), $options: "i" } } : {};
+  const hivename = req.query.hiveName;
+  let condition = hivename ? { hiveName: { $regex: new RegExp(hivename), $options: "i" } } : {};
 
   Hive.find(condition)
     .then(data => {
@@ -69,7 +71,7 @@ exports.findAll = (req, res) => {
 
 // Find a single hive with an id
 exports.findOne = (req, res) => {
-    const id = req.params.hiveId;
+    const id = req.params.id;
 
   Hive.findById(id)
     .then(data => {
@@ -92,7 +94,7 @@ exports.update = (req, res) => {
         });
       }
     
-      const id = req.params.hiveId;
+      const id = req.params.id;
     
       Hive.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then(data => {
@@ -111,7 +113,7 @@ exports.update = (req, res) => {
 
 // Delete a Hive with the specified id in the request
 exports.delete = (req, res) => {
-    const id = req.params.hiveId;
+    const id = req.params.id;
 
   Hive.findByIdAndRemove(id)
     .then(data => {

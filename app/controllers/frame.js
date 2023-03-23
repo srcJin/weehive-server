@@ -28,7 +28,7 @@ exports.create = (req, res) => {
     frameId: req.body.frameId,
     type: req.body.type, // 1: 
     floor: req.body.floor,
-    index: req.body.index, 
+    index: req.body.index,
     inspection: req.body.inspection, // array of date
     harvest: req.body.harvest,
     location: req.body.location,
@@ -41,6 +41,7 @@ exports.create = (req, res) => {
   frame
     .save(frame)
     .then(data => {
+      console.log("frame.js create res.send(data) data = ", data)
       res.send(data);
     })
     .catch(err => {
@@ -53,12 +54,14 @@ exports.create = (req, res) => {
 
 // Retrieve all frames from the database.
 exports.findAll = (req, res) => {
-    const framename = req.query.framename;
-  var condition = framename ? { framename: { $regex: new RegExp(framename), $options: "i" } } : {};
+  const framename = req.query.framename;
+  let condition = framename ? { framename: { $regex: new RegExp(framename), $options: "i" } } : {};
 
   Frame.find(condition)
     .then(data => {
       res.send(data);
+      console.log("frame.js findAll data = ", data)
+
     })
     .catch(err => {
       res.status(500).send({
@@ -70,13 +73,17 @@ exports.findAll = (req, res) => {
 
 // Find a single frame with an id
 exports.findOne = (req, res) => {
-    const id = req.params.frameId;
+  const id = req.params.frameId;
 
   Frame.findById(id)
     .then(data => {
       if (!data)
         res.status(404).send({ message: "Not found Frame with id " + id });
-      else res.send(data);
+      else 
+      {
+        console.log("frame.js findOne data = ", data)
+        res.send(data);
+      }
     })
     .catch(err => {
       res
@@ -87,32 +94,36 @@ exports.findOne = (req, res) => {
 
 // Update a Frame by the id in the request
 exports.update = (req, res) => {
-    if (!req.body) {
-        return res.status(400).send({
-          message: "Data to update can not be empty!"
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Data to update can not be empty!"
+    });
+  }
+
+  const id = req.params.frameId;
+
+  Frame.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Frame with id=${id}. Maybe Frame was not found!`
         });
+      } else {
+        console.log('Frame.findByIdAndUpdate() id = ', id)
+        console.log('Frame.findByIdAndUpdate() req.body = ', req.body)
+        res.send({ message: "Frame was updated successfully." });
       }
-    
-      const id = req.params.frameId;
-    
-      Frame.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-        .then(data => {
-          if (!data) {
-            res.status(404).send({
-              message: `Cannot update Frame with id=${id}. Maybe Frame was not found!`
-            });
-          } else res.send({ message: "Frame was updated successfully." });
-        })
-        .catch(err => {
-          res.status(500).send({
-            message: "Error updating Frame with id=" + id
-          });
-        });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating Frame with id=" + id
+      });
+    });
 };
 
 // Delete a Frame with the specified id in the request
 exports.delete = (req, res) => {
-    const id = req.params.frameId;
+  const id = req.params.frameId;
 
   Frame.findByIdAndRemove(id)
     .then(data => {
@@ -135,7 +146,7 @@ exports.delete = (req, res) => {
 
 // Delete all Frames from the database.
 exports.deleteAll = (req, res) => {
-    Frame.deleteMany({})
+  Frame.deleteMany({})
     .then(data => {
       res.send({
         message: `${data.deletedCount} All frames were deleted successfully!`
@@ -152,13 +163,13 @@ exports.deleteAll = (req, res) => {
 // Find all
 exports.findAllType = (req, res) => {
   Frame.find({ date: 1 })
-  .then(data => {
-    res.send(data);
-  })
-  .catch(err => {
-    res.status(500).send({
-      message:
-        err.message || "Some error occurred while retrieving Frame data."
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Frame data."
+      });
     });
-  });
 };

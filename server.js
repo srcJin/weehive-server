@@ -12,13 +12,13 @@ const app = express();
 // step 2. add middlewares
 //
 
-// cors provides Express middleware to enable CORS with various options.
+// cors provides Express middleware to enable CORS with letious options.
 // related to error: :8080/#/tutorials:1 
 // Access to XMLHttpRequest at 'http://localhost:3333/api/tutorials' from origin 'http://localhost:8080' 
 // has been blocked by CORS policy: 
 // The 'Access-Control-Allow-Origin' header has a value 
 // 'http://localhost:8081' that is not equal to the supplied origin.
-var corsOptions = {
+let corsOptions = {
   origin: "http://localhost:8080"  
 };
 app.use(cors(corsOptions));
